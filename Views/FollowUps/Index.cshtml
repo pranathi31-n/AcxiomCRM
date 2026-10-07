@@ -1,0 +1,4 @@
+@model IEnumerable<FollowUp>
+<div class="d-flex justify-content-between mb-3"><h2>Follow-Ups</h2><a class="btn btn-primary" asp-action="Create">+ Schedule Follow-Up</a></div>
+<table class="table table-hover"><thead><tr><th>Date</th><th>Type</th><th>Remarks</th><th>Status</th><th>Assigned</th><th>Action</th></tr></thead><tbody>
+@foreach(var x in Model){<tr><td>@x.FollowUpDate.ToString("dd-MMM-yyyy")</td><td>@x.FollowUpType</td><td>@x.Remarks</td><td>@x.Status</td><td>@x.AssignedTo</td><td>@if(x.Status=="Planned"){<form asp-action="Complete" asp-route-id="@x.FollowUpId" method="post">@Html.AntiForgeryToken()<button class="btn btn-sm btn-success">Complete</button></form>}</td></tr>}</tbody></table>

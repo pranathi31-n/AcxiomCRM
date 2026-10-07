@@ -1,0 +1,8 @@
+﻿@model Lead
+<h2>Edit Lead</h2><form asp-action="Edit" method="post" class="row g-3">@Html.AntiForgeryToken()<input type="hidden" asp-for="LeadId"/><input type="hidden" asp-for="CreatedDate"/><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="col-md-6"><label asp-for="LeadCode"></label><input asp-for="LeadCode" class="form-control"/></div><div class="col-md-6"><label asp-for="LeadName"></label><input asp-for="LeadName" class="form-control"/></div>
+<div class="col-md-6"><label asp-for="Email"></label><input asp-for="Email" class="form-control"/></div><div class="col-md-6"><label asp-for="Phone"></label><input asp-for="Phone" class="form-control"/></div>
+<div class="col-md-6"><label asp-for="CompanyName"></label><input asp-for="CompanyName" class="form-control"/></div><div class="col-md-6"><label asp-for="Source"></label><input asp-for="Source" class="form-control"/></div>
+<div class="col-md-6"><label asp-for="Status"></label><select asp-for="Status" class="form-select"><option>New</option><option>Contacted</option><option>Qualified</option><option>Unqualified</option><option>Converted</option><option>Lost</option></select></div>
+<div class="col-md-6"><label asp-for="ExpectedValue"></label><input asp-for="ExpectedValue" class="form-control"/></div><div class="col-12"><button class="btn btn-primary">Update</button></div></form>
+@section Scripts{<partial name="_ValidationScriptsPartial" />}

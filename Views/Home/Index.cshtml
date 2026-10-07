@@ -1,0 +1,17 @@
+@model DashboardData
+<div class="d-flex justify-content-between align-items-center mb-4"><h2>CRM Dashboard</h2><span class="badge bg-secondary">@User.Identity?.Name</span></div>
+<div class="row g-3">
+@foreach(var card in new[]{("Customers",Model.Customers,"primary"),("Leads",Model.Leads,"success"),("Open Leads",Model.OpenLeads,"info"),("Opportunities",Model.Opportunities,"warning"),("Open Opportunities",Model.OpenOpportunities,"dark"),("Won",Model.Won,"success"),("Lost",Model.Lost,"danger")}) {
+<div class="col-md-3"><div class="card shadow-sm"><div class="card-body"><div class="text-muted">@card.Item1</div><div class="display-6 fw-bold">@card.Item2</div></div></div></div>
+}
+<div class="col-md-3"><div class="card shadow-sm"><div class="card-body"><div class="text-muted">Pipeline Value</div><div class="display-6 fw-bold">@Model.Pipeline.ToString("C")</div></div></div></div>
+</div>
+<div class="row mt-4 g-4"><div class="col-md-6"><div class="card"><div class="card-body"><h5>Lead Status</h5><canvas id="leadChart"></canvas></div></div></div><div class="col-md-6"><div class="card"><div class="card-body"><h5>Opportunity Pipeline</h5><canvas id="oppChart"></canvas></div></div></div></div>
+@section Scripts {
+<script>
+const lead=@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.LeadStatus));
+const opp=@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.OpportunityStage));
+new Chart(document.getElementById('leadChart'),{type:'doughnut',data:{labels:lead.map(x=>x.label),datasets:[{data:lead.map(x=>x.value)}]}});
+new Chart(document.getElementById('oppChart'),{type:'bar',data:{labels:opp.map(x=>x.label),datasets:[{label:'Count',data:opp.map(x=>x.value)}]},options:{responsive:true}});
+</script>
+}

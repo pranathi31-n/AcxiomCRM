@@ -1,0 +1,3 @@
+@model IEnumerable<ApplicationUser>
+<div class="d-flex justify-content-between mb-3"><h2>User Management</h2><a class="btn btn-primary" asp-action="Create">+ Create User</a></div>
+<table class="table"><thead><tr><th>Name</th><th>Email</th><th>Status</th><th>Created</th><th>Action</th></tr></thead><tbody>@foreach(var x in Model){<tr><td>@x.FullName</td><td>@x.Email</td><td>@(x.IsActive?"Active":"Inactive")</td><td>@x.CreatedDate</td><td><form asp-action="Toggle" method="post" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@x.Id"/><button class="btn btn-sm btn-outline-secondary">Toggle</button></form></td></tr>}</tbody></table>

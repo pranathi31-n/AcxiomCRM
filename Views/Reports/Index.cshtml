@@ -1,0 +1,4 @@
+<h2>Reports</h2><div class="row g-3">
+@foreach(var item in new[]{("Customers",ViewBag.Customers),("Leads",ViewBag.Leads),("Won Opportunities",ViewBag.Won),("Lost Opportunities",ViewBag.Lost),("Overdue Follow-Ups",ViewBag.Overdue)}){<div class="col-md-4"><div class="card"><div class="card-body"><h5>@item.Item1</h5><div class="display-6">@item.Item2</div></div></div></div>}
+<div class="col-md-4"><div class="card"><div class="card-body"><h5>Open Pipeline</h5><div class="display-6">@((decimal)ViewBag.Pipeline).ToString("C")</div></div></div></div></div>
+<div class="alert alert-info mt-4">Reports are role-scoped through the authenticated application and can be extended with CSV/PDF export.</div>

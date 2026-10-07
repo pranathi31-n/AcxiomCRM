@@ -1,0 +1,5 @@
+@model IEnumerable<Customer>
+<div class="d-flex justify-content-between align-items-center mb-3"><h2>Customers</h2><a class="btn btn-primary" asp-action="Create">+ Add Customer</a></div>
+<form class="row g-2 mb-3"><div class="col-md-5"><input name="search" class="form-control" placeholder="Name, email, phone or company" /></div><div class="col-auto"><button class="btn btn-outline-secondary">Search</button></div></form>
+<table class="table table-hover"><thead><tr><th>Code</th><th>Name</th><th>Email</th><th>Phone</th><th>Company</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+@foreach(var item in Model){<tr><td>@item.CustomerCode</td><td>@item.CustomerName</td><td>@item.Email</td><td>@item.Phone</td><td>@item.CompanyName</td><td>@item.Status</td><td><a asp-action="Details" asp-route-id="@item.CustomerId">View</a> | <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a></td></tr>}</tbody></table>

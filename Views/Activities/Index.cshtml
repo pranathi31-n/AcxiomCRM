@@ -1,0 +1,3 @@
+@model IEnumerable<Activity>
+<div class="d-flex justify-content-between mb-3"><h2>Activities</h2><a class="btn btn-primary" asp-action="Create">+ Add Activity</a></div>
+<table class="table"><thead><tr><th>Type</th><th>Subject</th><th>Date</th><th>Status</th><th>Assigned</th></tr></thead><tbody>@foreach(var x in Model){<tr><td>@x.ActivityType</td><td>@x.Subject</td><td>@x.ActivityDate</td><td>@x.Status</td><td>@x.AssignedTo</td></tr>}</tbody></table>
